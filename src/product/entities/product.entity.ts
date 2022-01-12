@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   AfterInsert,
   AfterRemove,
@@ -10,12 +11,29 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 @Entity()
 export class Product {
-  @ObjectIdColumn() id: ObjectID;
-  @Column() productId: string = uuidv4();
-  @Column() productname: string;
-  @Column() category: string;
-  @Column() location: string;
-  @Column() price: number;
+  @ApiProperty({ example: 'e99' })
+  @ObjectIdColumn()
+  id: ObjectID;
+
+  @ApiProperty({ example: 'e99' })
+  @Column()
+  productId: string = uuidv4();
+
+  @ApiProperty({ example: 'Ram Memory' })
+  @Column()
+  name: string;
+
+  @ApiProperty({ example: 'Electronics' })
+  @Column()
+  category: string;
+
+  @ApiProperty({ example: 'Barcelona' })
+  @Column()
+  location: string;
+
+  @ApiProperty({ example: 95.95 })
+  @Column()
+  price: number;
   // TODO when creating user, remember arr for products
 
   @AfterInsert()
