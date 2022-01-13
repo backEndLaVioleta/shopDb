@@ -27,7 +27,7 @@ async function bootstrap() {
   const docSwagger = SwaggerModule.createDocument(app, configSwagger);
   SwaggerModule.setup('test', app, docSwagger);
   try {
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT;
     await app.listen(port, () => {
       logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
     });
