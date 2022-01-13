@@ -1,0 +1,68 @@
+ use('backShop');
+
+ /* db.createCollection('products' ,{
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['name', 'category', 'location', 'price'],
+      additionalProperties: true, 
+      properties: {
+        _id: {
+          bsonType: 'objectId',
+          description: 'object id is the hex decimal in mongodb.'
+        },
+        brand: {
+          bsonType: 'string',
+          description: 'Must be a string. Required'
+        },
+        name: {
+          bsonType: 'string',
+          description: 'Must be a string. Required'
+        },
+        category: {
+          bsonType: 'string',
+          description: 'Must be a string. Required'
+        },
+        location: {
+          bsonType: 'string',
+          description: 'Must be a string. Required'
+        },
+        price: {
+          bsonType: ['int', 'double', 'decimal'],
+          description: 'Must be a number and can be a decimal. Required'
+        }
+      }
+    }
+  }
+}); */
+
+/* db.products.insertOne({
+  name: 'Asus X501UV',
+  category: 'Laptop',
+  location: 'Barcelona',
+  price: 695.95
+}) */
+/* db.products.insertMany([
+  {
+  brand:'Lenovo', 
+  name: 'Gold',
+  category: 'Laptop',
+  location: 'Korea',
+  price: 695.95
+},
+  {
+  brand:'Apple', 
+  name: 'MacPro',
+  category: 'Laptop',
+  location: 'Korea',
+  price: 695.95
+},
+  {
+  brand:'HP',
+  name: 'Solaris',
+  category: 'Laptop',
+  location: 'Korea',
+  price: 695.95
+}
+]); */
+// db.products.drop()
