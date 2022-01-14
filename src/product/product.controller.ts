@@ -19,17 +19,17 @@ export class ProductController {
 
   @Post('/add')
   async createProduct(@Body() createProductDto: CreateProductDto) {
-    return this.productService.create(createProductDto);
+    return this.productService.createProduct(createProductDto);
   }
 
   @Get('/all')
   async findAll() {
-    return this.productService.findAll();
+    return this.productService.findAllProducts();
   }
 
   @Get(':id')
   async findOneProduct(@Param('id') id: string) {
-    return this.productService.findOne(+id);
+    return this.productService.findOneProduct(id);
   }
 
   @Patch('/update/:id')
@@ -37,11 +37,11 @@ export class ProductController {
     @Param('id') id: string,
     @Body() updateProductDto: UpdateProductDto,
   ) {
-    return this.productService.update(+id, updateProductDto);
+    return this.productService.updateProduct(id, updateProductDto);
   }
 
   @Delete('/delete/:id')
   async removeProduct(@Param('id') id: string) {
-    return this.productService.remove(+id);
+    return this.productService.removeProduct(id);
   }
 }
