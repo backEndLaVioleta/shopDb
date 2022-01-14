@@ -6,7 +6,12 @@ export class CreateProductDto {
   @IsString()
   readonly id: string;
 
-  @ApiProperty({ example: 'Asus 565' })
+  @ApiProperty({ example: 'Asus' })
+  @IsString()
+  @Length(4, 50)
+  readonly brand: string;
+
+  @ApiProperty({ example: 'X565' })
   @IsString()
   @Length(4, 50)
   readonly name: string;

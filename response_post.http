@@ -1,0 +1,10 @@
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 174
+ETag: W/"ae-tn/Aa5sYDhcvqry7GxDlivRK3r8"
+Date: Fri, 14 Jan 2022 16:31:44 GMT
+Connection: close
+
+{"productId":"9cdf31e5-adeb-4513-ae38-3244518f947c","brand":"Asus","name":"X401UV","category":"Laptops","location":"Barcelona","price":695.95,"id":"61e1a570e7e6871d80c28e9c"}

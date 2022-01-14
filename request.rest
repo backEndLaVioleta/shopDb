@@ -1,7 +1,13 @@
 POST http://localhost:3000/api/v1/product/add
 Content-Type: application/json
 
-response: 'This action adds a new product'
+{
+    "brand": "Apple",
+    "name": "Mac Pro 19inch ",
+    "category": "Laptops",
+    "location": "Barcelona",
+    "price": 1550.95
+}
 
 ######################################
 

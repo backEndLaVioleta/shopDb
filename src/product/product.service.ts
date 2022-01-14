@@ -5,6 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { isString } from 'class-validator';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -37,11 +38,26 @@ export class ProductService {
 
   async findOneProduct(id: string) {
     console.log(`This action returns a #${id} product`);
-    const productToFind = await this.productRepository.findOne({ id });
+    const productToFind = await this.productRepository.findOne({ id: id });
+    console.log(productToFind);
     if (!productToFind) {
       throw new NotFoundException('Product not found');
     }
     return productToFind;
+  }
+
+  async findOneProductByName(productName: string) {
+    if (isString(productName)) {
+      const productToFind = await this.productRepository.findOne({
+        name: productName,
+      });
+      if (!productToFind) {
+        throw new NotFoundException('Product not found');
+      }
+      return productToFind;
+    } else {
+      throw new HttpException('Not proper name format', HttpStatus.BAD_REQUEST);
+    }
   }
 
   async updateProduct(id: string, updateProductDto: UpdateProductDto) {

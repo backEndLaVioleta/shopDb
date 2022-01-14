@@ -19,6 +19,10 @@ export class Product {
   @Column()
   productId: string = uuidv4();
 
+  @ApiProperty({ example: 'kingston' })
+  @Column()
+  brand: string;
+
   @ApiProperty({ example: 'Ram Memory' })
   @Column()
   name: string;
