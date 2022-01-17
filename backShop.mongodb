@@ -36,13 +36,13 @@
   }
 });*/
 
- db.products.insertOne({
+ /*db.product.insertOne({
   brand: 'Asus',
   name: 'X501UV',
   category: 'Laptop',
   location: 'Barcelona',
   price: 695.95
-}) 
+})*/ 
  /*db.product.insertMany([
   {
   brand:'Lenovo', 
