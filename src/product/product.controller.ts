@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Logger,
+  Query,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -19,7 +20,7 @@ export class ProductController {
 
   @Post('/add')
   async createProduct(@Body() createProductDto: CreateProductDto) {
-    return this.productService.createProduct(createProductDto);
+    return await this.productService.createProduct(createProductDto);
   }
 
   @Get('/all')
@@ -30,6 +31,15 @@ export class ProductController {
   @Get('/:id')
   async findOneProduct(@Param('id') id: string) {
     return this.productService.findOneProduct(id);
+  }
+
+  @Get()
+  async findProductByName(
+    // TODO to choose query params or body
+    @Query('name') name: string,
+    @Query('brand') brand: string,
+  ) {
+    return this.productService.findOneProductByName(name, brand);
   }
 
   @Patch('/update/:id')

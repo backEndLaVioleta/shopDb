@@ -27,7 +27,7 @@ export class ProductService {
     }
   }
 
-  async findAllProducts() {
+  async findAllProducts(): Promise<Product[]> {
     try {
       console.log(`This action returns all product`);
       return await this.productRepository.find();
@@ -36,51 +36,68 @@ export class ProductService {
     }
   }
 
-  async findOneProduct(id: string) {
+  async findOneProduct(id: string): Promise<Product> {
     console.log(`This action returns a #${id} product`);
-    const productToFind = await this.productRepository.findOne({ id: id });
-    console.log(productToFind);
-    if (!productToFind) {
+    try {
+      const productToFind = await this.productRepository.findOne(id);
+      console.log(productToFind);
+      if (!productToFind) {
+        throw new NotFoundException('Product not found');
+      }
+      return productToFind;
+    } catch (error) {
       throw new NotFoundException('Product not found');
     }
-    return await productToFind;
   }
 
-  async findOneProductByName(productName: string) {
-    if (isString(productName)) {
+  async findOneProductByName(
+    productName: string,
+    productBrand: string,
+  ): Promise<Product> {
+    if (isString(productName && productBrand)) {
       const productToFind = await this.productRepository.findOne({
         name: productName,
+        brand: productBrand,
       });
       if (!productToFind) {
         throw new NotFoundException('Product not found');
       }
-      return await productToFind;
+      return productToFind;
     } else {
       throw new HttpException('Not proper name format', HttpStatus.BAD_REQUEST);
     }
   }
 
-  async updateProduct(id: string, updateProductDto: UpdateProductDto) {
+  async updateProduct(
+    id: string,
+    updateProductDto: UpdateProductDto,
+  ): Promise<Product> {
     console.log(`This action updates a #${id} product`);
+    try {
+      const productToUpdate = await this.productRepository.findOne(id);
+      if (!productToUpdate) {
+        throw new NotFoundException('Product not found');
+      }
 
-    const productToUpdate = await this.productRepository.findOne({ id });
-    if (!productToUpdate) {
-      throw new NotFoundException('Product not found');
+      Object.assign(productToUpdate, updateProductDto);
+
+      return await this.productRepository.save(productToUpdate);
+    } catch (error) {
+      throw new HttpException('Not proper name format', HttpStatus.BAD_REQUEST);
     }
-
-    Object.assign(productToUpdate, updateProductDto);
-
-    return await this.productRepository.save(productToUpdate);
   }
 
-  async removeProduct(id: string) {
+  async removeProduct(id: string): Promise<Product> {
     console.log(`This action removes a #${id} product`);
-    const productToDelete = await this.productRepository.findOne({ id });
-    if (!productToDelete) {
+    try {
+      const productToDelete = await this.productRepository.findOne(id);
+      if (!productToDelete) {
+        throw new NotFoundException('Product not found');
+      }
+      this.productRepository.remove(productToDelete);
+      return await productToDelete;
+    } catch (error) {
       throw new NotFoundException('Product not found');
     }
-    this.productRepository.remove(productToDelete);
-
-    return await productToDelete;
   }
 }
