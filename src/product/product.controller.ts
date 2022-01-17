@@ -20,7 +20,10 @@ export class ProductController {
 
   @Post('/add')
   async createProduct(@Body() createProductDto: CreateProductDto) {
-    return await this.productService.createProduct(createProductDto);
+    const product = await this.productService.createProduct(createProductDto);
+    this.logger.verbose(`${product.name} added to the database`);
+
+    return product;
   }
 
   @Get('/all')

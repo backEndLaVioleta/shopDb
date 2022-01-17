@@ -20,10 +20,22 @@ export class ProductService {
     const newProduct = new Product();
     Object.assign(newProduct, createProductDto);
     console.log('This action adds a new product');
-    try {
-      return await this.productRepository.save(newProduct);
-    } catch (error) {
-      console.log(error.message);
+    const checkIfProductExists = await this.productRepository.findOne({
+      name: newProduct.name,
+      brand: newProduct.brand,
+    });
+    console.log(checkIfProductExists);
+    if (checkIfProductExists) {
+      throw new HttpException('Product already in database', HttpStatus.FOUND);
+    } else {
+      try {
+        return await this.productRepository.save(newProduct);
+      } catch (error) {
+        throw new HttpException(
+          'Problem adding product',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
     }
   }
 
@@ -39,7 +51,7 @@ export class ProductService {
   async findOneProduct(id: string): Promise<Product> {
     console.log(`This action returns a #${id} product`);
     try {
-      const productToFind = await this.productRepository.findOne(id);
+      const productToFind = await this.productRepository.findOne({ id });
       console.log(productToFind);
       if (!productToFind) {
         throw new NotFoundException('Product not found');
@@ -83,7 +95,10 @@ export class ProductService {
 
       return await this.productRepository.save(productToUpdate);
     } catch (error) {
-      throw new HttpException('Not proper name format', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        'Not proper idetification format',
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 
@@ -95,7 +110,7 @@ export class ProductService {
         throw new NotFoundException('Product not found');
       }
       this.productRepository.remove(productToDelete);
-      return await productToDelete;
+      return productToDelete;
     } catch (error) {
       throw new NotFoundException('Product not found');
     }

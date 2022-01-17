@@ -1,6 +1,6 @@
  use('backShop');
 
- /* db.createCollection('products' ,{
+ /*db.createCollection('product' ,{
   validator: {
     $jsonSchema: {
       bsonType: 'object',
@@ -34,16 +34,16 @@
       }
     }
   }
-}); */
+});*/
 
- /* db.products.insertOne({
+ db.products.insertOne({
   brand: 'Asus',
   name: 'X501UV',
   category: 'Laptop',
   location: 'Barcelona',
   price: 695.95
-}) */ 
-/* db.products.insertMany([
+}) 
+ /*db.product.insertMany([
   {
   brand:'Lenovo', 
   name: 'Gold',
@@ -65,5 +65,5 @@
   location: 'Korea',
   price: 695.95
 }
-]); */
-// db.products.drop()
+]);*/
+// db.product.drop()
