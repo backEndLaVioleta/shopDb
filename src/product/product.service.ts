@@ -43,7 +43,7 @@ export class ProductService {
     if (!productToFind) {
       throw new NotFoundException('Product not found');
     }
-    return productToFind;
+    return await productToFind;
   }
 
   async findOneProductByName(productName: string) {
@@ -54,7 +54,7 @@ export class ProductService {
       if (!productToFind) {
         throw new NotFoundException('Product not found');
       }
-      return productToFind;
+      return await productToFind;
     } else {
       throw new HttpException('Not proper name format', HttpStatus.BAD_REQUEST);
     }
@@ -70,7 +70,7 @@ export class ProductService {
 
     Object.assign(productToUpdate, updateProductDto);
 
-    return this.productRepository.save(productToUpdate);
+    return await this.productRepository.save(productToUpdate);
   }
 
   async removeProduct(id: string) {
@@ -81,6 +81,6 @@ export class ProductService {
     }
     this.productRepository.remove(productToDelete);
 
-    return productToDelete;
+    return await productToDelete;
   }
 }
