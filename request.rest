@@ -3,10 +3,10 @@ Content-Type: application/json
 
 {
     "brand": "Apple",
-    "name": "Mac Pro 19inch ",
-    "category": "Laptops",
+    "name": "iMac 30 inch",
+    "category": "Desktop",
     "location": "Barcelona",
-    "price": 1550.95
+    "price": 1950.95
 }
 
 ######################################
@@ -14,27 +14,24 @@ Content-Type: application/json
 PATCH http://localhost:3000/api/v1/product/update/1
 Content-Type: application/json
 
-response: `This action updates a #${id} product`
 
 #####################################
 
 GET http://localhost:3000/api/v1/product/all
 Content-Type: application/json
 
-response: `This action returns all product`
+
 
 #####################################
 
 GET http://localhost:3000/api/v1/product/1
 Content-Type: application/json
 
-response: `This action returns a #${id} product`
 
 #####################################
 
 DELETE http://localhost:3000/api/v1/product/delete/1
 Content-Type: application/json
 
-response: `This action removes a #${id} product`
 
 ######################################

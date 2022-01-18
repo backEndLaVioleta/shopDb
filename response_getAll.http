@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 1210
+ETag: W/"4ba-SGuRKrywtY0gMhLJIJoxy0LQj8o"
+Date: Tue, 18 Jan 2022 14:57:15 GMT
+Connection: close
+
+[{"productId":"0e514b11-9f3e-447a-a0b6-c43ee9576d1c","id":"61e54f5409d495180286d208","brand":"Lenovo","name":"Gold","category":"Laptop","location":"Korea","price":695.95},{"productId":"268ff17d-5d64-486b-a9d0-a1ab57ea20b8","id":"61e54f5409d495180286d209","brand":"Apple","name":"MacPro","category":"Laptop","location":"Korea","price":695.95},{"productId":"92d39f6d-cc6c-45eb-81be-e716499bc4c4","id":"61e54f5409d495180286d20a","brand":"HP","name":"Solaris","category":"Laptop","location":"Korea","price":695.95},{"productId":"39655e95-ab2d-4efb-aed7-0f569ba6a4ae","id":"61e54fca922d952024cbd467","brand":"Acer","name":"515X","category":"Electronics","location":"USA","price":395.95},{"productId":"4ec98a7d-1db7-4bab-9b47-0513297763a1","id":"61e55a1ca70f522058fd5fa2","brand":"Acer","name":"5150X","category":"Electronics","location":"USA","price":395.95},{"productId":"d89ae8b8-a74f-40cd-9cb2-154846001e2a","id":"61e55dedffb54806f0d62459","brand":"Nikon","name":"F5","category":"Photography","location":"Japan","price":4495.95},{"productId":"e03a2388-470e-4d53-bd28-379c0611f2cc","id":"61e6d54267a43a0d8826e053","brand":"Apple","name":"iMac 30 inch","category":"Desktop","location":"Barcelona","price":1950.95}]
