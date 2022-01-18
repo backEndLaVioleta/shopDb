@@ -6,37 +6,22 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { isString } from 'class-validator';
-import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
+import { ProductRepository } from './product.repository';
 
 @Injectable()
 export class ProductService {
   constructor(
-    @InjectRepository(Product) private productRepository: Repository<Product>,
+    @InjectRepository(ProductRepository)
+    private productRepository: ProductRepository,
   ) {}
   async createProduct(createProductDto: CreateProductDto): Promise<Product> {
-    const newProduct = new Product();
-    Object.assign(newProduct, createProductDto);
-    console.log('This action adds a new product');
-    const checkIfProductExists = await this.productRepository.findOne({
-      name: newProduct.name,
-      brand: newProduct.brand,
-    });
-    console.log(checkIfProductExists);
-    if (checkIfProductExists) {
-      throw new HttpException('Product already in database', HttpStatus.FOUND);
-    } else {
-      try {
-        return await this.productRepository.save(newProduct);
-      } catch (error) {
-        throw new HttpException(
-          'Problem adding product',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
-    }
+    const product = await this.productRepository.createProduct(
+      createProductDto,
+    );
+    return product;
   }
 
   async findAllProducts(): Promise<Product[]> {
